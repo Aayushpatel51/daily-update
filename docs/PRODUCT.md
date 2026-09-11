@@ -42,6 +42,8 @@ The product is a curated monitoring and publishing service. Its usefulness depen
 
 Topic names are a proposal. AI coding tools may have multiple tags, but remain one event and one notification per subscriber. Broader corporate coverage requires a scope decision.
 
+The [Task 1 source-monitoring plan](SOURCE_MONITORING_PLAN.md) supplies the concrete topic boundaries, 28-source shortlist, proposed alert rubric, polling intervals and cost envelope for owner review. It does not represent a completed connector benchmark or approved spending.
+
 ## 3. Reader journeys
 
 ### Subscribe
