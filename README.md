@@ -29,6 +29,7 @@ Daily Update/
     ├── REQUIREMENTS.md
     ├── ARCHITECTURE.md
     ├── SOURCE_MONITORING_PLAN.md
+    ├── TASKS.md
     ├── design/
     │   ├── BRAND.md
     │   └── DESIGN_SYSTEM.md
@@ -43,6 +44,7 @@ The existing `.agents/` directory and `skills-lock.json` are local tooling confi
 | Document | Purpose |
 | --- | --- |
 | [Product](docs/PRODUCT.md) | Audience, scope, topic proposal, roadmap, validation, and open decisions |
+| [Project task list](docs/TASKS.md) | End-to-end MVP backlog, dependencies, acceptance criteria, requirement coverage and future work |
 | [Task 1: source-monitoring plan](docs/SOURCE_MONITORING_PLAN.md) | Five topic boundaries, 28 source candidates, alert rubric, polling, costs, and next experiment |
 | [Requirements](docs/REQUIREMENTS.md) | Observable behavior, acceptance criteria, and release gates |
 | [Architecture](docs/ARCHITECTURE.md) | Pipeline, data model, integrations, delivery reliability, and cost controls |
