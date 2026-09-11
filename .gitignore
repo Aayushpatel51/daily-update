@@ -1,0 +1,66 @@
+# Dependencies and package-manager caches
+node_modules/
+.pnpm-store/
+.npm/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/install-state.gz
+.pnp.*
+
+# Build and framework output
+.next/
+out/
+dist/
+build/
+.turbo/
+*.tsbuildinfo
+next-env.d.ts
+
+# Local environment and credentials; keep safe templates versioned
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+
+# Test artifacts and logs
+coverage/
+playwright-report/
+test-results/
+blob-report/
+*.log
+
+# Deployment and local service state
+.vercel/
+.netlify/
+supabase/.temp/
+supabase/.branches/
+.inngest/
+
+# Runtime data, crawls, and private exports
+/data/raw/
+/data/exports/
+/storage/
+/tmp/
+*.sqlite
+*.sqlite3
+*.db
+
+# OS/editor artifacts
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Optional Python worker artifacts
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+
+# Do not ignore application lockfiles, documentation, migrations, or local skills.
