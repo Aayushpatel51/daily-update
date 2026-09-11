@@ -2,6 +2,8 @@
 
 Status: proposed implementation, September 11, 2026. No providers are integrated. Product behavior is defined in [REQUIREMENTS.md](REQUIREMENTS.md).
 
+See the [Task 1 source-monitoring plan](SOURCE_MONITORING_PLAN.md) for the initial registry and costed scheduling proposal. It recommends hourly shared discovery and flags that per-source workflow executions may exceed the proposed scheduler's free quota; validate batching or worker costs before selecting a plan.
+
 ## 1. Design approach
 
 Use a modular application backed by PostgreSQL and durable background jobs. Keep the public reading path separate from research and generation. Store one canonical event with revisions, then render channel-specific content from approved facts.
