@@ -2,7 +2,7 @@
 
 ## Purpose and current stage
 
-This repository is the planning foundation for Daily Update, a working name for a web research and publishing product. The current task is documentation before application coding. No application, integration, deployment, or live subscription service exists yet.
+This repository is the planning foundation for Daily Update, a working name for a web research and publishing product. An isolated source experiment now exists under experiments/source-monitor. No web application, publishing integration, deployment, or live subscription service exists yet. Keep work bounded to the task backlog.
 
 Read [README.md](README.md), [PRODUCT.md](docs/PRODUCT.md), [REQUIREMENTS.md](docs/REQUIREMENTS.md), and [ARCHITECTURE.md](docs/ARCHITECTURE.md) before implementation. For interface work also read [BRAND.md](docs/design/BRAND.md) and [DESIGN_SYSTEM.md](docs/design/DESIGN_SYSTEM.md). Follow [CODING_STANDARDS.md](docs/engineering/CODING_STANDARDS.md) for code changes.
 
@@ -19,6 +19,8 @@ Read [README.md](README.md), [PRODUCT.md](docs/PRODUCT.md), [REQUIREMENTS.md](do
 - Never promise zero delay, comprehensive internet coverage, guaranteed notification delivery, or being first to report.
 
 ## Working rules
+
+- MVP development/testing has a $0 incremental service budget. Follow [FREE_MVP_PLAN.md](docs/FREE_MVP_PLAN.md); paid trials, upgrades and paid fallback are disabled. Live spending needs a later explicit budget decision.
 
 - The user authorizes a direct push to `main` only for the initial documentation setup. After that, create a separate branch and pull request for every change, including documentation. Never push changes directly to `main`, merge a PR, or enable auto-merge; the user reviews and merges PRs.
 - Treat explicit user decisions as authoritative. Update affected planning documents when scope changes.

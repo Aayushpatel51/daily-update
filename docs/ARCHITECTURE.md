@@ -2,7 +2,9 @@
 
 Status: proposed implementation, September 11, 2026. No providers are integrated. Product behavior is defined in [REQUIREMENTS.md](REQUIREMENTS.md).
 
-See the [Task 1 source-monitoring plan](SOURCE_MONITORING_PLAN.md) for the initial registry and costed scheduling proposal. It recommends hourly shared discovery and flags that per-source workflow executions may exceed the proposed scheduler's free quota; validate batching or worker costs before selecting a plan.
+See the [Task 1 source-monitoring plan](SOURCE_MONITORING_PLAN.md) for the initial registry and costed scheduling proposal. Its earlier hourly schedule is deferred under the free MVP decision; validate source batching and free quotas before selecting a schedule.
+
+The September 13 [free MVP decision](FREE_MVP_PLAN.md) supersedes paid defaults below: local app/PostgreSQL/worker, captured email, human or evaluated local-model drafts, and only explicitly capped free search access. Hosted candidates are future options; no paid integration is required for testing.
 
 ## 1. Design approach
 
@@ -33,16 +35,16 @@ The outbox releases Telegram first. Article work does not wait for every recipie
 | Layer | Proposal | Selection rationale / condition |
 | --- | --- | --- |
 | Web and server endpoints | Next.js App Router + TypeScript | One public site and internal review interface; server-render published articles |
-| Database | Supabase-managed PostgreSQL | Relational events, subscriptions, constraints, and optional similarity extension |
-| Editor authentication | Supabase Auth | Server-verified identities and explicit editor roles; public reading remains anonymous |
-| Background orchestration | Inngest | Scheduled and event-driven steps, bounded retries, concurrency control |
+| Database | Local PostgreSQL for testing; Supabase candidate later | Relational events, subscriptions, constraints, and optional similarity extension |
+| Editor authentication | Local test identities; Supabase Auth candidate later | Server-verified identities and explicit editor roles; public reading remains anonymous |
+| Background orchestration | Local worker for testing; Inngest candidate later | Scheduled and event-driven steps, bounded retries, concurrency control |
 | Source ingestion | HTTP retrieval and RSS/Atom parsers | Start with permitted structured/simple pages; conditional requests and backoff |
-| Web discovery | Trial Perplexity Search, Tavily, or Exa; choose one initially | Benchmark source coverage, freshness, extraction, restrictions, and cost |
-| LLM | Hosted provider behind a structured-output adapter | Choose after evaluating factual support and actual token cost; no model is fixed |
+| Web discovery | Manual search plus capped no-cost trial; paid comparisons deferred | Benchmark source coverage, freshness, extraction, restrictions, and cost |
+| LLM | Human/fixture drafts first, evaluated local model; hosted adapter deferred | Choose after evaluating factual support and actual token cost; no model is fixed |
 | Similarity | Normalized URLs, hashes, entities, dates; optional pgvector | Avoid embeddings until lexical grouping limitations are observed |
 | Telegram | Official Bot API | Direct subscriber alerts and message edits |
-| Email | Resend candidate | Evaluate digest use, authentication, suppression, webhook support, and provider limits |
-| Hosting | Managed Node-compatible hosting, chosen after worker experiment | Check job duration, outbound access, region, pricing, and crawling requirements |
+| Email | Local capture for tests; Resend candidate for real delivery | Evaluate digest use, authentication, suppression, webhook support, and provider limits |
+| Hosting | Existing computer for tests; live hosting chosen after worker experiment | Check job duration, outbound access, region, pricing, and crawling requirements |
 
 Do not include a browser cluster, separate Python service, Redis, Kafka, external vector database, or CMS by default. If necessary sources require browser rendering, add one isolated bounded worker after measuring the need.
 
@@ -163,9 +165,9 @@ Use local fixtures, a staging database, separate provider credentials, and an ex
 
 ## 11. Alternatives and unresolved choices
 
-- Search provider: compare Perplexity Search, Tavily, and Exa with the same source/event sample. Select one; do not pay for all three by default.
+- Search provider: compare available no-cost access on the same source/event sample; defer any paid provider. Never convert free-quota exhaustion to a paid call.
 - Polling tool: custom lightweight retrieval versus changedetection.io; choose based on source complexity and operational cost.
-- Queue: Inngest is proposed; use a database outbox regardless so editorial transactions remain durable.
+- Queue: local worker initially; Inngest remains a later candidate. Use a database outbox regardless so editorial transactions remain durable.
 - Email: validate Resend suitability, suppression behavior, and pricing against the expected audience before committing.
 - Hosting: choose after the ingestion experiment establishes process duration and browser requirements.
 - Model: evaluate schema reliability, factual support, latency, and cost; do not hardcode a model name from illustrative conversation examples.

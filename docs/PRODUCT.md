@@ -17,7 +17,7 @@ The product is a curated monitoring and publishing service. Its usefulness depen
 - Telegram brief first, website article afterward, end-of-day email last.
 - Telegram alerts contain a short explanation; articles provide more context.
 - Email groups the day's relevant updates by topic and links to the articles.
-- Inexpensive first version; WhatsApp considered later.
+- $0 incremental service spend for MVP development/testing; minimize measured live costs later. Follow the [free MVP plan](FREE_MVP_PLAN.md). WhatsApp remains deferred.
 - Create the planning foundation before application code.
 
 ### Confirmed operating defaults
@@ -130,7 +130,7 @@ Avoid using email opens as the sole engagement signal. Pilot targets for speed a
 
 ## 8. Budget and launch decisions
 
-Inexpensive does not mean free. Set a monthly hard spending limit and a daily operating allowance before enabling scheduled external calls. Monitor shared sources and topics, not each subscriber separately. Reduce broad discovery frequency before sacrificing evidence verification when approaching the budget.
+MVP development/testing daily and monthly paid-service caps are $0. Use the local-first [free MVP plan](FREE_MVP_PLAN.md); paid trials and fallback are disabled. Full live spending requires a later explicit budget decision. Monitor shared sources and topics, not each subscriber separately. Reduce broad discovery frequency before sacrificing evidence verification when approaching the budget.
 
 Open decisions: domain/sender setup before real distribution; source access permissions; automated search/model and live hosting; future live monetary budget; retention policy, support responsibility and operating jurisdiction. The accepted defaults and $0 additional testing cap in [MVP decisions](MVP_DECISIONS.md) override earlier budget estimates. These can be resolved in their dependent phase without blocking unrelated local work.
 

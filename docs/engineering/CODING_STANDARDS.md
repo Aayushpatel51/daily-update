@@ -1,6 +1,6 @@
 # Coding standards
 
-Status: intended conventions for future implementation, September 11, 2026. No application code or executable commands exist yet.
+Status: intended conventions for future implementation, September 11, 2026. An isolated source experiment has its own verified commands; the application scaffold remains future work.
 
 ## 1. General approach
 

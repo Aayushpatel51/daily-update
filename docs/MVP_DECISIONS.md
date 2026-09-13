@@ -33,4 +33,4 @@ Bot credentials and the owner's verified Telegram connection are still needed du
 
 ## Remaining stage gates
 
-T04 is ready for review. T06 is only partly decided: the initial editor is known, but retention/deletion, support ownership and operating policies remain unresolved before a real pilot. T05 still needs scoped free credentials. T07 remains in PR #3 until the owner merges it; T08 follows that merge. Search/model/worker evaluation precedes application stack selection under T12. No paid service or public launch is authorized by these defaults.
+T04 is ready for review. T06 is only partly decided: the initial editor is known, but retention/deletion, support ownership and operating policies remain unresolved before a real pilot. T05 still needs scoped free credentials. T07 and T08 are merged in PR #3 and PR #5 respectively. Search/model/worker evaluation precedes application stack selection under T12. No paid service or public launch is authorized by these defaults.

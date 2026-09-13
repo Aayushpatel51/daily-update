@@ -1,0 +1,219 @@
+{
+  "purpose": "One-time endpoint and basic robots observations; not production connector approval",
+  "sources": [
+    {
+      "source_id": "S07",
+      "requested_url": "https://github.blog/changelog/feed/",
+      "kind": "rss",
+      "observed_at_utc": "2026-09-13T03:01:46.957102+00:00",
+      "curl_exit": 0,
+      "http_status": "200",
+      "final_url": "https://github.blog/changelog/feed/",
+      "content_type": "application/rss+xml; charset=UTF-8",
+      "request_seconds": "0.324036",
+      "bytes": 42475,
+      "sha256": "81e55f8ff5b6ac7b405f724515392d9866f07e18ec790765a6f417351005465c",
+      "error": null,
+      "cache_headers": [
+        "last-modified: Fri, 11 Sep 2026 21:36:15 GMT",
+        "etag: \"8c6ae53e19017b7a3450e6330dab8f09\""
+      ],
+      "parse": {
+        "root_tag": "rss",
+        "records": 10,
+        "sample_id": "https://github.blog/changelog/2026-09-11-add-vs-code-agents-to-copilot-usage-metrics",
+        "sample_timestamp": "Fri, 11 Sep 2026 21:30:30 +0000",
+        "dated_records": 10
+      }
+    },
+    {
+      "source_id": "S12",
+      "requested_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+      "kind": "json",
+      "observed_at_utc": "2026-09-13T03:01:47.083969+00:00",
+      "curl_exit": 0,
+      "http_status": "200",
+      "final_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+      "content_type": "application/json",
+      "request_seconds": "0.450078",
+      "bytes": 1721121,
+      "sha256": "c27673ad6c346c50f573c566f14c11c373e4ae452880d2cdb8f01a364e1e630b",
+      "error": null,
+      "cache_headers": [
+        "last-modified: Fri, 11 Sep 2026 19:32:16 GMT",
+        "etag: \"1a4321-65b3a2462cef0\""
+      ],
+      "parse": {
+        "records": 1709,
+        "catalog_version": "2026.09.11",
+        "date_released": "2026-09-11T19:32:16.8993Z",
+        "all_required_fields": true,
+        "sample_id": "CVE-2026-84869",
+        "sample_date_added": "2026-09-11"
+      }
+    },
+    {
+      "source_id": "S14",
+      "requested_url": "https://cloud.google.com/feeds/gcp-release-notes.xml",
+      "kind": "atom",
+      "observed_at_utc": "2026-09-13T03:01:48.346039+00:00",
+      "curl_exit": 0,
+      "http_status": "200",
+      "final_url": "https://docs.cloud.google.com/feeds/gcp-release-notes.xml",
+      "content_type": "text/xml",
+      "request_seconds": "1.712436",
+      "bytes": 590796,
+      "sha256": "4abbd3e99033168289eb7fdd16d65f8170f24d9b6452e3700e0f4e0b2a994f5c",
+      "error": null,
+      "cache_headers": [
+        "last-modified: Sun, 13 Sep 2026 02:01:37 GMT"
+      ],
+      "parse": {
+        "root_tag": "{http://www.w3.org/2005/Atom}feed",
+        "records": 30,
+        "sample_id": "tag:google.com,2016:gcp-release-notes#September_11_2026",
+        "sample_timestamp": "2026-09-11T00:00:00-07:00",
+        "dated_records": 30
+      }
+    },
+    {
+      "source_id": "S04",
+      "requested_url": "https://huggingface.co/blog",
+      "kind": "html",
+      "observed_at_utc": "2026-09-13T03:01:47.556573+00:00",
+      "curl_exit": 0,
+      "http_status": "200",
+      "final_url": "https://huggingface.co/blog",
+      "content_type": "text/html; charset=utf-8",
+      "request_seconds": "0.581063",
+      "bytes": 294880,
+      "sha256": "c8b4a8d3ebaf211890b16bf1f9f269c4ad2f7a4dd05c9db1e347cdea3014d250",
+      "error": null,
+      "cache_headers": [
+        "etag: W/\"47fe0-oLpriwu5bJhZsdq8+UQyO67luXo\""
+      ],
+      "parse": {
+        "link_count": 72,
+        "time_elements": [
+          "2026-09-10T18:59:36",
+          "2026-09-08T14:03:22",
+          "2026-08-27T11:36:12"
+        ],
+        "candidate_links": [
+          "/blog/community",
+          "/blog/bartowski/per-tensor-layout-maps-for-gguf-quantization",
+          "/blog/hugging-science/earthmover-hf",
+          "/blog/qvac/translate-psy-afrislm"
+        ]
+      }
+    },
+    {
+      "source_id": "S20",
+      "requested_url": "https://blogs.windows.com/",
+      "kind": "html",
+      "observed_at_utc": "2026-09-13T03:01:47.485477+00:00",
+      "curl_exit": 0,
+      "http_status": "200",
+      "final_url": "https://blogs.windows.com/",
+      "content_type": "text/html; charset=UTF-8",
+      "request_seconds": "0.373519",
+      "bytes": 152737,
+      "sha256": "63dc988f3379b713fc4b073153ac2f1668b723a617938842d191d08a16e66dd7",
+      "error": null,
+      "cache_headers": [
+        "last-modified: Tue, 08 Sep 2026 10:08:28 GMT"
+      ],
+      "parse": {
+        "link_count": 136,
+        "time_elements": [],
+        "candidate_links": [
+          "https://blogs.windows.com/windowsdeveloper/2026/09/04/announcing-project-zenith-the-ready-to-code-windows-experience/",
+          "https://blogs.windows.com/devices/2026/06/16/introducing-the-next-surface-pro-and-surface-laptop-built-for-performance-and-flexibility/",
+          "https://blogs.windows.com/devices/2026/06/10/computex-2026-empowering-a-billion-users-with-windows-across-the-ecosystem/",
+          "https://blogs.windows.com/windowsdeveloper/2026/06/02/build-2026-furthering-windows-as-the-trusted-platform-for-development/"
+        ]
+      }
+    },
+    {
+      "source_id": "S22",
+      "requested_url": "https://www.microsoft.com/en-us/investor/default",
+      "kind": "html",
+      "observed_at_utc": "2026-09-13T03:01:47.937258+00:00",
+      "curl_exit": 0,
+      "http_status": "200",
+      "final_url": "https://www.microsoft.com/en-us/investor/default",
+      "content_type": "text/html; charset=utf-8",
+      "request_seconds": "0.421780",
+      "bytes": 292708,
+      "sha256": "8d8088259334a7cab6fe95525f184dffb961b0b90391a106c32f8581528717af",
+      "error": null,
+      "cache_headers": [],
+      "parse": {
+        "link_count": 168,
+        "time_elements": [],
+        "candidate_links": [
+          "/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast",
+          "/en-us/Investor/earnings/FY-2026-Q4/metrics",
+          "/en-us/Investor/earnings/fy-2026-q4/press-release-webcast",
+          "/en-us/investor/earnings/fy-2026-q4/press-release-webcast"
+        ]
+      }
+    }
+  ],
+  "robots": [
+    {
+      "source_id": "S07",
+      "robots_url": "https://github.blog/robots.txt",
+      "observed_at_utc": "2026-09-13T03:04:30.733579+00:00",
+      "http_status": "200",
+      "curl_exit": 0,
+      "error": null,
+      "can_fetch_basic_parser": true
+    },
+    {
+      "source_id": "S12",
+      "robots_url": "https://www.cisa.gov/robots.txt",
+      "observed_at_utc": "2026-09-13T03:04:28.708743+00:00",
+      "http_status": "200",
+      "curl_exit": 0,
+      "error": null,
+      "can_fetch_basic_parser": true
+    },
+    {
+      "source_id": "S14",
+      "robots_url": "https://docs.cloud.google.com/robots.txt",
+      "observed_at_utc": "2026-09-13T03:04:29.061047+00:00",
+      "http_status": "200",
+      "curl_exit": 0,
+      "error": null,
+      "can_fetch_basic_parser": true
+    },
+    {
+      "source_id": "S04",
+      "robots_url": "https://huggingface.co/robots.txt",
+      "observed_at_utc": "2026-09-13T03:04:29.017070+00:00",
+      "http_status": "200",
+      "curl_exit": 0,
+      "error": null,
+      "can_fetch_basic_parser": true
+    },
+    {
+      "source_id": "S20",
+      "robots_url": "https://blogs.windows.com/robots.txt",
+      "observed_at_utc": "2026-09-13T03:04:29.165092+00:00",
+      "http_status": "200",
+      "curl_exit": 0,
+      "error": null,
+      "can_fetch_basic_parser": true
+    },
+    {
+      "source_id": "S22",
+      "robots_url": "https://www.microsoft.com/robots.txt",
+      "observed_at_utc": "2026-09-13T03:04:29.197580+00:00",
+      "http_status": "200",
+      "curl_exit": 0,
+      "error": null,
+      "can_fetch_basic_parser": true
+    }
+  ]
+}

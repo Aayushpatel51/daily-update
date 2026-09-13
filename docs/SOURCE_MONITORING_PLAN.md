@@ -156,39 +156,11 @@ Publish the article after the brief release; eligible published articles enter t
 
 ## 7. Provider comparison and cost model
 
-Prices below were checked on September 11, 2026. USD, before tax. They are research inputs, not purchase authorization or measured invoices.
+The September 13 owner decision replaces the earlier $100–120 monthly pilot envelope: MVP development/testing must incur $0 incremental service spend. See the [free MVP plan](FREE_MVP_PLAN.md) for local execution, free-search caps, manual/local drafting and the future live-budget gate. Earlier paid search comparisons and scheduler upgrades are deferred; no paid trial is required.
 
-| Candidate | Verified pricing/capability | Recommendation |
-| --- | --- | --- |
-| [Perplexity Search](https://docs.perplexity.ai/docs/getting-started/pricing) | $5 per 1,000 successful search requests; up to five queries in a request; search endpoint has no token charge | Paid pilot candidate; compare results and batched-query behavior |
-| [Tavily](https://www.tavily.com/pricing) | 1,000 free credits/month; pay-as-you-go $0.008/credit | Good bounded no-cost trial; [basic search costs one credit](https://docs.tavily.com/documentation/api-reference/endpoint/search), advanced uses more |
-| [Exa](https://exa.ai/docs/reference/livecrawling-contents) | Supports configurable content freshness | Reserve candidate if the first two have retrieval gaps; no Exa cost included here |
+Initial search experiment proposal: five topics × two basic searches/day × seven days = 70 credits, within a 100-credit total experiment cap if verified free access is available. Hourly shared search is a future measured option, not the current free schedule. Source polling uses an existing local computer and must respect access conditions; no 24/7 availability is implied.
 
-Hourly five-topic discovery over 30 days is 3,600 queries. Perplexity: $18 unbatched, or $3.60 if one five-query request per hour is suitable. Tavily basic: $28.80 gross at pay-as-you-go, before any applicable free allowance; advanced mode and extraction cost extra. These numbers cover discovery only, not model-written briefs or articles. Do not assume all accounts can combine free credits and paid plans in the same way.
-
-For a seven-day trial, two runs per topic per day produce 70 queries/provider; 70 Tavily basic credits or $0.35 unbatched Perplexity search. This sparse comparison tests relevance and extraction, not minute-level freshness. After it, test hourly discovery plus monitored sources for seven days to evaluate latency and misses (840 queries/provider unbatched, before follow-ups).
-
-### Monthly pilot planning envelope
-
-Assume 25 subscribers, at most ten approved events/day, 30 days, shared hourly searches and daily email. Allowances are spending targets to validate, not quoted vendor prices.
-
-| Component | Planning amount | Basis / constraint |
-| --- | --- | --- |
-| Search plus follow-ups | $25 | $18 unbatched base leaves $7 for bounded verification; batching may save more |
-| LLM generation/classification | $15 allowance | No model chosen; constrain token volume and evaluate actual rates before enabling |
-| Web and retrieval worker | $20 allowance | Hosting provider not selected; exclude unrestricted browser crawling |
-| Database | $25 | [Supabase Pro starts at $25/month](https://supabase.com/pricing); free is possible for a limited experiment, with different limits |
-| Email | $0–20 allowance | 750 ordinary emails/month plus verification; validate newsletter eligibility/product and quota with [Resend](https://resend.com/pricing) |
-| Scheduler | $0 conditional | [Inngest Hobby lists 50k executions/month; Pro starts at $99](https://www.inngest.com/pricing). Base per-source workflow design would exceed free quota |
-| Telegram API | $0 platform allowance | Use [standard bot limits](https://core.telegram.org/bots/faq), not paid broadcasts; worker costs counted above |
-| Contingency | $15 | Meter retries, retrieval, storage and unexpected usage |
-| Total | $100–120/month conditional envelope | Excludes taxes, domain registration and human editorial labor; not approved spending |
-
-If Inngest Pro is needed, the envelope becomes $199–219 before other changes; redesign polling or revise the budget rather than silently upgrading. Free credits are a trial aid, not the steady-state cost model.
-
-LLM accounting example: cap 100 candidate classifications/day at 1,000 input + 100 output tokens each; cap ten approved events/day at 8,000 input + 1,500 output across brief/article drafting. That is 5.4M input and 0.75M output tokens/month before retries, extra evidence or embeddings. Cost = 5.4 × input rate/M + 0.75 × output rate/M. The $15 allowance is viable only if selected rates and measured workload fit it. Prioritize verification when reducing volume.
-
-Editorial work is separate: even ten events/day at an illustrative ten review minutes/event requires about 50 hours/month, before rejected candidates and research. Reviewer coverage must be decided before promising timely service.
+Continue recording editorial time separately. Free infrastructure does not eliminate review work. The six-source [T07 validation](research/T07_SOURCE_VALIDATION.md) establishes one-time endpoint retrieval, not production connector readiness.
 
 ## 8. Next experiment and acceptance
 
@@ -201,4 +173,4 @@ Task 1 delivers this plan only. After owner feedback/merge, Task 2 should create
 5. Report relevance/precision, duplicate rate, source health, p50/p95 delay where measurable, total calls/tokens and cost per useful event. Report sample size and gaps alongside metrics.
 6. Choose one search provider and a feasible polling/worker configuration. Targets: no known unsupported claims in approved samples, no duplicate fixture alerts, and explicit disposition of every failed connector. Set numeric relevance/latency targets before the live test.
 
-Owner review requested: five topic boundaries; global versus India emphasis; acceptable spending envelope; available review hours. None of the services have been purchased or configured by this task.
+Owner review requested: five topic boundaries; global versus India emphasis; future live spending cap; available review hours. None of the services have been purchased or configured by this task.
