@@ -20,6 +20,8 @@ Read [README.md](README.md), [PRODUCT.md](docs/PRODUCT.md), [REQUIREMENTS.md](do
 
 ## Working rules
 
+- MVP development/testing has a $0 incremental service budget. Follow [FREE_MVP_PLAN.md](docs/FREE_MVP_PLAN.md); paid trials, upgrades and paid fallback are disabled. Live spending needs a later explicit budget decision.
+
 - The user authorizes a direct push to `main` only for the initial documentation setup. After that, create a separate branch and pull request for every change, including documentation. Never push changes directly to `main`, merge a PR, or enable auto-merge; the user reviews and merges PRs.
 - Treat explicit user decisions as authoritative. Update affected planning documents when scope changes.
 - Distinguish decided scope, proposed implementation choices, and unresolved launch dependencies. Do not silently present assumptions as user approval.

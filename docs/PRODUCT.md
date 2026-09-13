@@ -17,7 +17,7 @@ The product is a curated monitoring and publishing service. Its usefulness depen
 - Telegram brief first, website article afterward, end-of-day email last.
 - Telegram alerts contain a short explanation; articles provide more context.
 - Email groups the day's relevant updates by topic and links to the articles.
-- Inexpensive first version; WhatsApp considered later.
+- $0 incremental service spend for MVP development/testing; minimize measured live costs later. Follow the [free MVP plan](FREE_MVP_PLAN.md). WhatsApp remains deferred.
 - Create the planning foundation before application code.
 
 ### Proposed defaults, not final user decisions
@@ -128,9 +128,9 @@ Avoid using email opens as the sole engagement signal. Pilot targets for speed a
 
 ## 8. Budget and launch decisions
 
-Inexpensive does not mean free. Set a monthly hard spending limit and a daily operating allowance before enabling scheduled external calls. Monitor shared sources and topics, not each subscriber separately. Reduce broad discovery frequency before sacrificing evidence verification when approaching the budget.
+MVP development/testing daily and monthly paid-service caps are $0. Use the local-first [free MVP plan](FREE_MVP_PLAN.md); paid trials and fallback are disabled. Full live spending requires a later explicit budget decision. Monitor shared sources and topics, not each subscriber separately. Reduce broad discovery frequency before sacrificing evidence verification when approaching the budget.
 
-Open decisions: final topic labels; public brand/domain; geographic emphasis; source access permissions; search/model provider and hosting; monetary budget; editorial coverage hours; final email cutoff; retention policy and operating jurisdiction. These can be resolved in their dependent phase without blocking unrelated local work.
+Open decisions: final topic labels; public brand/domain; geographic emphasis; source access permissions; search/model provider and hosting; live monetary budget; editorial coverage hours; final email cutoff; retention policy and operating jurisdiction. These can be resolved in their dependent phase without blocking unrelated local work.
 
 ## 9. Key risks
 

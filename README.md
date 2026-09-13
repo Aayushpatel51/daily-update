@@ -4,7 +4,7 @@ Working project name. Planning baseline: September 11, 2026.
 
 Daily Update will monitor the internet for relevant developments in five topics, send subscribers a verified Telegram brief, publish an explanatory article, and deliver an optional end-of-day email connecting the day's updates to those articles.
 
-**Status: planning documents only. There is no runnable application yet.**
+**Status: planning and initial source validation. There is no runnable application yet. MVP/testing service budget: $0.**
 
 ## Agreed experience
 
@@ -30,6 +30,10 @@ Daily Update/
     ├── ARCHITECTURE.md
     ├── SOURCE_MONITORING_PLAN.md
     ├── TASKS.md
+    ├── FREE_MVP_PLAN.md
+    ├── research/
+    │   ├── T07_SOURCE_VALIDATION.md
+    │   └── T07_SOURCE_OBSERVATIONS.json
     ├── design/
     │   ├── BRAND.md
     │   └── DESIGN_SYSTEM.md
@@ -43,6 +47,8 @@ The existing `.agents/` directory and `skills-lock.json` are local tooling confi
 
 | Document | Purpose |
 | --- | --- |
+| [Free MVP plan](docs/FREE_MVP_PLAN.md) | $0 testing defaults, free-quota controls and future live-budget gate |
+| [T07 source validation](docs/research/T07_SOURCE_VALIDATION.md) | Six observed endpoints, parsing findings, access notes and limitations |
 | [Product](docs/PRODUCT.md) | Audience, scope, topic proposal, roadmap, validation, and open decisions |
 | [Project task list](docs/TASKS.md) | End-to-end MVP backlog, dependencies, acceptance criteria, requirement coverage and future work |
 | [Task 1: source-monitoring plan](docs/SOURCE_MONITORING_PLAN.md) | Five topic boundaries, 28 source candidates, alert rubric, polling, costs, and next experiment |
@@ -74,6 +80,6 @@ Phase durations depend on provider access, editorial capacity, and pilot finding
 
 ## Proposed technical baseline
 
-TypeScript, Next.js, PostgreSQL/Supabase, Inngest, the official Telegram Bot API, and an email provider such as Resend. Search and LLM providers will be selected using a small evaluation; none is purchased or integrated. A separate crawling worker is conditional on source needs, not a day-one dependency.
+TypeScript, Next.js, local PostgreSQL and a local worker for testing, with the official Telegram Bot API and local email capture. Hosted services remain optional later candidates under the [free MVP plan](docs/FREE_MVP_PLAN.md). Search and LLM providers will be selected using a small evaluation; none is purchased or integrated. A separate crawling worker is conditional on source needs, not a day-one dependency.
 
-There are no install, development, migration, or test commands yet. Add verified commands when the application scaffold exists. Do not assume free tiers cover the full service: search, inference, hosting, email, and editorial work have costs.
+There are no install, development, migration, or test commands yet. Add verified commands when the application scaffold exists. Testing must remain within $0 incremental service spend. Local capture does not prove real email delivery; full live hosting and delivery require a later measured budget decision.

@@ -40,7 +40,7 @@ Baseline: September 11, 2026. P0 means required for the first public version. Nu
 | OPS-01 | Traceability | An operator can trace source → evidence → event/revision → approvals → Telegram attempts → article → digest entries |
 | OPS-02 | Failure recovery | Transient failures retry with limits; permanent failures suppress or enter review; duplicate callbacks do not duplicate state transitions |
 | OPS-03 | Safety switches | Admin can disable ingestion, AI generation, article publishing, Telegram dispatch, or email dispatch independently |
-| OPS-04 | Budget | Provider quotas and spending thresholds are configurable; exhausted discovery budget stops new paid work and raises an internal alert |
+| OPS-04 | Budget | MVP/testing paid-service caps are $0; paid routes disabled; reserve and cap free usage including concurrent retries; exhaustion stops calls and raises an internal alert; live spending requires explicit approval |
 
 ## 3. Publishing and timing semantics
 
