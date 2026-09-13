@@ -1,0 +1,25 @@
+{
+  "name": "daily-update-source-experiment",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.20.0 <25"
+  },
+  "scripts": {
+    "check": "tsc --noEmit",
+    "test": "node --test *.test.ts",
+    "demo": "node cli.ts --demo",
+    "probe": "node cli.ts --live",
+    "format:check": "prettier --check \"*.ts\" \"*.json\"",
+    "format": "prettier --write \"*.ts\" \"*.json\""
+  },
+  "dependencies": {
+    "ipaddr.js": "2.5.0",
+    "saxes": "6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.4",
+    "prettier": "3.9.6",
+    "typescript": "7.0.2"
+  }
+}
