@@ -6,6 +6,8 @@ Daily Update will monitor the internet for relevant developments in five topics,
 
 **Status: planning plus a runnable source experiment. There is no web application or live delivery service yet. MVP/testing service budget: $0.**
 
+Confirmed defaults and editor Telegram notifications are recorded in [MVP decisions](docs/MVP_DECISIONS.md). These override earlier provisional settings; the additional MVP/testing service budget is $0.
+
 ## Agreed experience
 
 1. Select one or more of five topics.
@@ -32,6 +34,7 @@ Daily Update/
     ├── ARCHITECTURE.md
     ├── SOURCE_MONITORING_PLAN.md
     ├── TASKS.md
+    ├── MVP_DECISIONS.md
     ├── FREE_MVP_PLAN.md
     ├── research/
     │   ├── T07_SOURCE_VALIDATION.md

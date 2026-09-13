@@ -26,6 +26,7 @@ Baseline: September 11, 2026. P0 means required for the first public version. Nu
 | EVT-02 | Meaningful-change detection | Recycled stories and cosmetic page changes are suppressed; a substantive update gets a new revision, not a duplicate event by default |
 | EDT-01 | Grounded drafts | Every material claim has linked evidence; unsupported claims are removed or held; invalid structured model output cannot be published |
 | EDT-02 | Brief approval | Editor can inspect sources, edit, approve, reject, or hold the initial brief independently of article approval |
+| EDT-03 | Editor Telegram notifications | Notify the allowlisted owner for research-ready candidates and separately for article drafts ready for review; deduplicate by stage/revision; links require editor authentication; notification failure never approves or publishes content |
 | TG-01 | Initial brief first | Approved brief is released to the Telegram outbox before full article publication; it includes headline, short explanation, evidence status, and original source |
 | TG-02 | Relevant delivery | Match active selected topics and alert preference; one multi-topic event creates one initial delivery per recipient |
 | TG-03 | Bot controls | Support /start, /topics, /settings, /pause, /resume, /stop, and /help with clear outcomes; /stop disables Telegram only |
@@ -56,7 +57,7 @@ This guarantees the product workflow order, not the arrival order on every devic
 
 ### Digest cutoff
 
-- Proposed daily cutoff is 21:00 local time, configurable before launch. Show the coverage interval, not an inaccurate midnight-to-midnight promise.
+- Accepted daily cutoff is 21:00 in the subscriber’s confirmed timezone, with Asia/Kolkata preselected. Show the coverage interval, not an inaccurate midnight-to-midnight promise.
 - Select approved, published articles that became digest-eligible since the previous successful digest cutoff, match current topics, and were not already included for that subscriber.
 - First digest begins from email activation; selecting a new topic applies prospectively. Explicit catch-up is a later feature.
 - Stories after today's cutoff belong to the next digest. A previously alerted story whose article is unfinished remains pending and enters the next eligible digest once published, with its original event date.

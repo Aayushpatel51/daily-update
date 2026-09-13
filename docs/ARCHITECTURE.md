@@ -81,6 +81,10 @@ Store canonical domain/URL, topics, source class, retrieval method, allowed use/
 
 Provide a bounded evidence bundle to the model and require structured fields with source IDs. Validate schema, source references, dates, and numbers; an LLM verification pass alone does not establish truth. The pilot editor approves the brief and later the article. Record model/prompt versions and cost metadata without logging sensitive inputs indiscriminately.
 
+### Initial manual research and editor notifications
+
+Follow the accepted [MVP decisions](MVP_DECISIONS.md). Enqueue an editor notification when a filtered candidate needs research, before drafting. The owner imports source-linked research and a brief for approval. After brief release, an article task is prepared manually and its submitted draft triggers a separate review notification. Use stage/revision-specific outbox keys and an editor allowlist, independent of subscriber routing. A failed notification leaves the task pending; a stale approval cannot publish a newer revision. Local links require the development computer until authenticated remote access is configured.
+
 ## 5. Data model
 
 | Entity | Key fields and relationships |
