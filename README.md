@@ -6,6 +6,8 @@ Daily Update will monitor the internet for relevant developments in five topics,
 
 **Status: planning documents only. There is no runnable application yet.**
 
+Confirmed defaults and editor Telegram notifications are recorded in [MVP decisions](docs/MVP_DECISIONS.md). These override earlier provisional settings; the additional MVP/testing service budget is $0.
+
 ## Agreed experience
 
 1. Select one or more of five topics.
@@ -30,6 +32,7 @@ Daily Update/
     ├── ARCHITECTURE.md
     ├── SOURCE_MONITORING_PLAN.md
     ├── TASKS.md
+    ├── MVP_DECISIONS.md
     ├── design/
     │   ├── BRAND.md
     │   └── DESIGN_SYSTEM.md

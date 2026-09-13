@@ -9,7 +9,7 @@ Product sequence: **detect → verify → Telegram brief → website article →
 - Stable IDs let us refer to tasks in conversation, commits and PRs. The earlier “Task 1” source plan is T02 below.
 - Status: **Done** = completed and merged; **Review** = prepared for this PR; **Planned** = not started; **Deferred** = outside MVP. No application work is complete yet.
 - Dependencies identify prerequisites, not a demand to finish every earlier row. Independent work may proceed when its own prerequisites are met.
-- Owner **Build** means implementation/research by the coding collaborator; **Owner** means the repository owner makes a product, access or launch decision; **Editor** means the designated human reviewer. Editorial staffing remains to be decided.
+- Owner **Build** means implementation/research by the coding collaborator; **Owner** means the repository owner makes a product, access or launch decision; **Editor** means the designated human reviewer. The owner is the initial editor; support and retention policies remain to be decided.
 - Normally one task produces one reviewable PR. Closely related tasks may share a PR; large tasks may use several small PRs. Record task IDs, validation, limitations and linked dependencies in each PR.
 - Start each implementation branch from current remote `main` after its prerequisite changes are merged. Never merge PRs, enable auto-merge, or push directly to `main`; the owner reviews and merges.
 - For completed work, update this list in the same PR and attach evidence. While its PR is open, mark it Review rather than Done. Confirm merge before promoting its status.
@@ -36,9 +36,9 @@ Product sequence: **detect → verify → Telegram brief → website article →
 | T01 | Establish repository and planning documents | Build | — | Done | Nine foundation files committed; initial setup is on main; PR-only workflow recorded |
 | T02 | Define topic boundaries and source plan | Build | T01 | Done | [PR #1](https://github.com/Aayushpatel51/daily-update/pull/1) merged; 28 candidates, monitoring methods, alert rubric and conditional costs documented; connectors not validated |
 | T03 | Create complete project backlog | Build | T02 | Review | This task list has dependencies, completion criteria, requirement coverage and deferred scope |
-| T04 | Record audience, topic and scheduling decisions | Owner | T02 | Planned | Confirm five display names/keys, global versus India emphasis, initial language, daily cutoff, and topic boundary changes; record explicit decisions in PRODUCT |
+| T04 | Record audience, topic and scheduling decisions | Owner | T02 | Review | [MVP decisions](MVP_DECISIONS.md): five topics/keys, English/global coverage, India availability, 21:00 confirmed-zone digest, local $0 testing and owner review notifications accepted |
 | T05 | Set budget and grant scoped provider access | Owner | T02 | Planned | Actual daily/monthly caps and test-provider access recorded; distinguish trial limits from production budget; credentials stored outside Git; no purchase inferred from estimates |
-| T06 | Define editorial coverage and data policies | Owner + Editor | T04 | Planned | Identify reviewer/support roles and hours, retention/deletion policy, evidence storage constraints and correction responsibility; document realistic alert expectations |
+| T06 | Define editorial coverage and data policies | Owner + Editor | T04 | Planned | Owner confirmed as notification-driven initial reviewer; still define support roles, coverage expectations, retention/deletion policy, evidence storage constraints and correction responsibility; document realistic alert expectations |
 
 ## B. Discovery experiments before the application
 
@@ -74,8 +74,8 @@ Use a synthetic or explicitly approved fixture and sandbox recipients. These tas
 | ID | Task | Owner | Depends on | Status | Deliverable / acceptance |
 | --- | --- | --- | --- | --- | --- |
 | T20 | Store one source event with evidence and draft brief | Build | T08, T09, T18 | Planned | One source document maps to one event/revision; schema-valid draft refers to actual evidence; missing support causes a hold |
-| T21 | Add minimal brief review and sandbox Telegram dispatch | Build | T19, T20 | Planned | Authorized editor approves an exact revision; release creates an outbox intent; sandbox send records message ID and original source; article not required beforehand |
-| T22 | Draft, review and publish a preview article | Build | T15, T21 | Planned | Stable preview article with sources/times; independent article approval; existing sandbox Telegram message receives article link without a second routine alert |
+| T21 | Add minimal brief review and sandbox Telegram dispatch | Build | T19, T20 | Planned | Research-ready candidate notifies the allowlisted editor before drafting; authenticated editor approves an exact revision; release creates an outbox intent; sandbox send records message ID and original source; article not required beforehand |
+| T22 | Draft, review and publish a preview article | Build | T15, T21 | Planned | Manual article-preparation task followed by separate draft-ready editor notification; stable preview article with sources/times; independent article approval; existing sandbox Telegram message receives article link without a second routine alert |
 | T23 | Assemble and send one sandbox daily digest | Build | T22 | Planned | Verified sandbox recipient receives grouped summaries linked only to published preview articles; plain-text version and empty-digest behavior checked |
 | T24 | Demonstrate the full slice and forced failures | Build | T23 | Planned | Trace evidence → brief → send → article → digest; replay jobs, interrupt a send, and delay article publication; record successes and limitations for review |
 
@@ -86,7 +86,7 @@ Use a synthetic or explicitly approved fixture and sandbox recipients. These tas
 | T25 | Add reviewed source registry and five-topic connectors | Build | T24 | Planned | Enable validated sources only; registry records interval, access notes and health; every topic has useful coverage; unsupported candidates remain disabled |
 | T26 | Add shared scheduled search and novelty filtering | Build | T12, T25 | Planned | Shared queries, overlapping windows, document hashes/cursors, backoff and domain limits; startup does not flood subscribers with historical items |
 | T27 | Implement event grouping, revisions and topic routing | Build | T09, T26 | Planned | Duplicate/syndicated reports group into one event; substantive updates create revisions; editor merge/split preserves references and existing delivery history |
-| T28 | Complete drafting and editorial review desk | Build + Editor | T14, T27 | Planned | Claims/evidence side by side; separate brief/article queues, alert rubric, approve/hold/reject actions, stale-work visibility and version-safe concurrent edits |
+| T28 | Complete drafting and editorial review desk | Build + Editor | T14, T27 | Planned | Stage/revision-deduplicated editor notifications, failed-notification visibility and stale-approval protection; claims/evidence side by side; separate brief/article queues, alert rubric, approve/hold/reject actions, stale-work visibility and version-safe concurrent edits |
 | T29 | Add correction and retraction workflow | Build + Editor | T28 | Planned | Visible article correction/history; affected earlier Telegram messages edited where possible; separately approved material correction delivery; daily digest can identify corrections |
 
 ## F. Subscribers and Telegram
@@ -153,6 +153,7 @@ Each requirement in [REQUIREMENTS.md](REQUIREMENTS.md) has an implementation own
 | EVT-02 | T26, T27 |
 | EDT-01 | T09, T12, T20, T28 |
 | EDT-02 | T21, T28 |
+| EDT-03 | T21, T22, T28 |
 | TG-01 | T21, T24 |
 | TG-02 | T33 |
 | TG-03 | T31 |

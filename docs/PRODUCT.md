@@ -20,17 +20,19 @@ The product is a curated monitoring and publishing service. Its usefulness depen
 - Inexpensive first version; WhatsApp considered later.
 - Create the planning foundation before application code.
 
-### Proposed defaults, not final user decisions
+### Confirmed operating defaults
 
-- Working name: Daily Update. Public name and domain remain open.
+Accepted September 13, 2026; see [MVP decisions](MVP_DECISIONS.md) for the initial manual research workflow and editor notifications.
+
+- MVP name: Daily Update. Domain purchase is deferred.
 - Initial audience: English-reading technology professionals, learners, and creators.
-- Coverage: global technology developments, with explicit regional availability where relevant. India-specific emphasis remains open.
-- Human review of both initial briefs and articles during the pilot. This constrains alert speed outside staffed hours.
-- Email cutoff: 21:00 in each subscriber's selected IANA timezone. The UI displays and allows confirmation of the timezone; 21:00 is a configurable default.
+- Coverage: global technology developments, with explicit regional availability where relevant. Mention India availability where relevant.
+- The owner reviews initial briefs and articles separately, prompted by private Telegram review notifications. Pending tasks remain queued while the owner is unavailable.
+- Email cutoff: 21:00 in each subscriber's selected IANA timezone. The UI displays and allows confirmation of the timezone; 21:00 is the accepted default; preselect Asia/Kolkata and require subscriber confirmation.
 - Telegram delivers all newly approved, meaningful events matching selected topics; users can pause, set quiet hours, or choose a major-only filter.
 - Public articles are accessible without an account. Telegram-only use must not require an email address.
 
-### Proposed five topics
+### Confirmed five topics
 
 | Stable key | Display name | Include | Boundary |
 | --- | --- | --- | --- |
@@ -40,7 +42,7 @@ The product is a curated monitoring and publishing service. Its usefulness depen
 | consumer-tech | Consumer Technology | Devices, apps, consumer platforms | Distinguish announcement from actual availability |
 | tech-business | Tech Business | Funding, acquisitions, strategy, leadership, workforce | Initially technology companies, not all industries |
 
-Topic names are a proposal. AI coding tools may have multiple tags, but remain one event and one notification per subscriber. Broader corporate coverage requires a scope decision.
+Topic names and keys are accepted for the MVP. AI coding tools may have multiple tags, but remain one event and one notification per subscriber. Broader corporate coverage requires a scope decision.
 
 The [Task 1 source-monitoring plan](SOURCE_MONITORING_PLAN.md) supplies the concrete topic boundaries, 28-source shortlist, proposed alert rubric, polling intervals and cost envelope for owner review. It does not represent a completed connector benchmark or approved spending.
 
@@ -130,7 +132,7 @@ Avoid using email opens as the sole engagement signal. Pilot targets for speed a
 
 Inexpensive does not mean free. Set a monthly hard spending limit and a daily operating allowance before enabling scheduled external calls. Monitor shared sources and topics, not each subscriber separately. Reduce broad discovery frequency before sacrificing evidence verification when approaching the budget.
 
-Open decisions: final topic labels; public brand/domain; geographic emphasis; source access permissions; search/model provider and hosting; monetary budget; editorial coverage hours; final email cutoff; retention policy and operating jurisdiction. These can be resolved in their dependent phase without blocking unrelated local work.
+Open decisions: domain/sender setup before real distribution; source access permissions; automated search/model and live hosting; future live monetary budget; retention policy, support responsibility and operating jurisdiction. The accepted defaults and $0 additional testing cap in [MVP decisions](MVP_DECISIONS.md) override earlier budget estimates. These can be resolved in their dependent phase without blocking unrelated local work.
 
 ## 9. Key risks
 

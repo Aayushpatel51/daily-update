@@ -8,7 +8,7 @@ Read [README.md](README.md), [PRODUCT.md](docs/PRODUCT.md), [REQUIREMENTS.md](do
 
 ## Product invariants
 
-- Launch with exactly five selectable topics. The count is decided; the proposed names and boundaries remain provisional.
+- Launch with exactly five selectable topics. Names and scope are confirmed in [MVP_DECISIONS.md](docs/MVP_DECISIONS.md).
 - Discover developments using monitored public sources and general web search. Do not introduce an aggregated news API as the primary data source.
 - Publishing sequence: verify a development, dispatch its Telegram brief, prepare and publish the website article, and include the published article in an eligible end-of-day email.
 - Article preparation must not delay the initial brief. Verification must precede both public outputs.
