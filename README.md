@@ -4,7 +4,7 @@ Working project name. Planning baseline: September 11, 2026.
 
 Daily Update will monitor the internet for relevant developments in five topics, send subscribers a verified Telegram brief, publish an explanatory article, and deliver an optional end-of-day email connecting the day's updates to those articles.
 
-**Status: planning and initial source validation. There is no runnable application yet. MVP/testing service budget: $0.**
+**Status: planning plus a runnable source experiment. There is no web application or live delivery service yet. MVP/testing service budget: $0.**
 
 ## Agreed experience
 
@@ -24,6 +24,8 @@ Daily Update/
 ├── AGENTS.md
 ├── README.md
 ├── .gitignore
+├── experiments/
+│   └── source-monitor/  # isolated CLI, tests and synthetic fixtures
 └── docs/
     ├── PRODUCT.md
     ├── REQUIREMENTS.md
@@ -33,7 +35,8 @@ Daily Update/
     ├── FREE_MVP_PLAN.md
     ├── research/
     │   ├── T07_SOURCE_VALIDATION.md
-    │   └── T07_SOURCE_OBSERVATIONS.json
+    │   ├── T07_SOURCE_OBSERVATIONS.json
+    │   └── T08_SOURCE_HARNESS.md
     ├── design/
     │   ├── BRAND.md
     │   └── DESIGN_SYSTEM.md
@@ -78,8 +81,19 @@ Implementation begins with a discovery experiment and one complete story flowing
 
 Phase durations depend on provider access, editorial capacity, and pilot findings. They are not delivery commitments. Detailed work and launch decisions are in [PRODUCT.md](docs/PRODUCT.md).
 
+## Run the source experiment
+
+T08 provides an isolated TypeScript harness for GitHub RSS, CISA JSON and Google Cloud Atom. See [setup, offline checks and optional probes](experiments/source-monitor/README.md) and [observed results](docs/research/T08_SOURCE_HARNESS.md).
+
+```sh
+npm ci --prefix experiments/source-monitor --ignore-scripts
+npm --prefix experiments/source-monitor run check
+npm --prefix experiments/source-monitor test
+npm --prefix experiments/source-monitor run demo
+```
+
 ## Proposed technical baseline
 
 TypeScript, Next.js, local PostgreSQL and a local worker for testing, with the official Telegram Bot API and local email capture. Hosted services remain optional later candidates under the [free MVP plan](docs/FREE_MVP_PLAN.md). Search and LLM providers will be selected using a small evaluation; none is purchased or integrated. A separate crawling worker is conditional on source needs, not a day-one dependency.
 
-There are no install, development, migration, or test commands yet. Add verified commands when the application scaffold exists. Testing must remain within $0 incremental service spend. Local capture does not prove real email delivery; full live hosting and delivery require a later measured budget decision.
+The commands above apply only to the source experiment. Web application development and migration commands will follow the application scaffold. Testing must remain within $0 incremental service spend. Local capture does not prove real email delivery; full live hosting and delivery require a later measured budget decision.
