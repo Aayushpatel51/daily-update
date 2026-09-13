@@ -97,6 +97,8 @@ An alert-worthy development must be new, relevant to a launch topic, sufficientl
 
 ## 6. Implementation sequence
 
+The [complete task list](TASKS.md) breaks these phases into reviewable tasks, links their dependencies, and maps every P0 requirement to implementation work. It distinguishes completed planning from unstarted application work.
+
 | Phase | Work | Evidence needed before advancing |
 | --- | --- | --- |
 | 0: Scope | Confirm topic labels, audience/geography, brand/domain, budget, and reviewer availability; audit 20–30 candidate sources across five topics | Approved configuration and source access notes; no paid commitments assumed |
