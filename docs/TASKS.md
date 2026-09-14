@@ -1,5 +1,7 @@
 # Project task list
 
+Local implementation update, September 14, 2026: the owner requested the complete testable MVP in one PR. [MVP acceptance](MVP_ACCEPTANCE.md) records implemented behavior and remaining release gaps; [local testing](LOCAL_TESTING.md) gives verified setup steps. Broader requirements below remain release targets, not claims that every production gate has passed.
+
 Baseline: September 11, 2026. This backlog covers the MVP from planning through launch and initial operation. Future features are separate. It does not authorize purchases, deployment, or live messaging.
 
 Product sequence: **detect → verify → Telegram brief → website article → end-of-day email**. Exactly five selectable topics; shared research; no packaged news API; WhatsApp deferred.

@@ -2,7 +2,7 @@
 
 ## Purpose and current stage
 
-This repository is the planning foundation for Daily Update, a working name for a web research and publishing product. An isolated source experiment now exists under experiments/source-monitor. No web application, publishing integration, deployment, or live subscription service exists yet. Keep work bounded to the task backlog.
+Daily Update now includes a local-testable web application, PostgreSQL worker, preview delivery adapters and the source-monitor experiment. The owner requested a complete local MVP pull request. Follow docs/LOCAL_TESTING.md and docs/MVP_ACCEPTANCE.md; public deployment and real email delivery are not implemented or authorized.
 
 Read [README.md](README.md), [PRODUCT.md](docs/PRODUCT.md), [REQUIREMENTS.md](docs/REQUIREMENTS.md), and [ARCHITECTURE.md](docs/ARCHITECTURE.md) before implementation. For interface work also read [BRAND.md](docs/design/BRAND.md) and [DESIGN_SYSTEM.md](docs/design/DESIGN_SYSTEM.md). Follow [CODING_STANDARDS.md](docs/engineering/CODING_STANDARDS.md) for code changes.
 
@@ -36,3 +36,13 @@ Read [README.md](README.md), [PRODUCT.md](docs/PRODUCT.md), [REQUIREMENTS.md](do
 ## Completion standard
 
 For code, run checks proportionate to the changed behavior and report what passed and what could not be verified. For documentation, check internal links, consistency, and the requested file structure. Do not claim planned behavior has been implemented. Keep this file concise; detailed policies belong in the linked documents.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

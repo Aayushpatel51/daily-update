@@ -1,0 +1,10 @@
+{
+ "title":"SYNTHETIC: a researched development headline",
+ "topics":["ai"],
+ "brief":"Explain what happened and who it affects, using only facts supported by your source notes.",
+ "article":{"changed":"Describe the actual change.","audience":"Explain availability, region and affected audience.","matters":"Explain practical implications separately from facts.","unknowns":"Record uncertainty, vendor claims and missing evidence."},
+ "evidence":[{"url":"https://example.invalid/source","note":"SYNTHETIC example. Replace with checked source evidence and supported claims.","publishedAt":""}],
+ "evidence_label":"Synthetic example, not news",
+ "major":false,
+ "synthetic":true
+}
