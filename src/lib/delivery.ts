@@ -217,7 +217,7 @@ export async function dispatchOne(now = new Date(), send = telegramCall) {
     if (d.channel === "email")
       eligible =
         !!s &&
-        (d.purpose === "access"
+        (["access", "email-link"].includes(d.purpose)
           ? !!s.email
           : d.purpose === "verify"
             ? s.email_state === "unverified"

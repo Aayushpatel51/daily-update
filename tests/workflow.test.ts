@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import pg from "pg";
 import { config } from "../src/lib/config";
+process.env.DELIVERY_MODE = "preview";
 const original = config().DATABASE_URL;
 const testUrl = new URL(original);
 testUrl.pathname = "/daily_update_test";
@@ -323,4 +324,64 @@ test("Telegram-only readers can add email; recovery never restarts an opted-out 
   assert.equal((await subscriber(a.id!)).email_state, "off");
   await recoverEmail("unknown@example.invalid");
   await preferences(a.id!, {}, "delete");
+});
+
+test("existing email links only after proof in the requesting subscriber session", async () => {
+  const { addEmail, confirmEmailLink } =
+    await import("../src/lib/subscriptions");
+  const old = await subscribe({
+    topics: ["coding"],
+    timezone: "UTC",
+    email: "link-proof@example.invalid",
+    telegram: true,
+  });
+  const current = await subscribe({
+    topics: ["ai"],
+    timezone: "Asia/Kolkata",
+    telegram: true,
+  });
+  const outsider = await subscribe({
+    topics: ["ai"],
+    timezone: "UTC",
+    telegram: true,
+  });
+  const link = await telegramLink(current.id!);
+  await tx((db) => connectTelegram(db, link.token, "preview:" + current.id));
+  const stale = (
+    await query<{ payload: { url: string } }>(
+      "SELECT payload FROM outbox WHERE subscriber_id=$1 AND purpose='verify'",
+      [old.id],
+    )
+  )[0];
+  assert.equal(
+    (await addEmail(current.id!, "link-proof@example.invalid"))?.linking,
+    true,
+  );
+  assert.equal((await subscriber(current.id!)).email, null);
+  await drain();
+  const capture = (
+    await query<{ payload: { url: string }; status: string }>(
+      "SELECT payload,status FROM outbox WHERE subscriber_id=$1 AND purpose='email-link'",
+      [old.id],
+    )
+  )[0];
+  assert.equal(capture.status, "captured");
+  const token = new URL(capture.payload.url).searchParams.get("token")!;
+  await assert.rejects(confirmEmailLink(outsider.id!, token));
+  assert.equal((await subscriber(old.id!)).email, "link-proof@example.invalid");
+  await confirmEmailLink(current.id!, token);
+  const target = await subscriber(current.id!);
+  assert.equal(target.email_state, "active");
+  assert.equal(target.email, "link-proof@example.invalid");
+  assert.equal(target.chat_id, "preview:" + current.id);
+  assert.deepEqual(target.topics, ["ai"]);
+  assert.equal(target.timezone, "Asia/Kolkata");
+  assert.equal((await subscriber(old.id!)).email, null);
+  assert.equal((await subscriber(old.id!)).email_state, "off");
+  await assert.rejects(confirmEmailLink(current.id!, token));
+  await assert.rejects(
+    verifyEmail(new URL(stale.payload.url).searchParams.get("token")!),
+  );
+  for (const id of [old.id, current.id, outsider.id])
+    await preferences(id!, {}, "delete");
 });

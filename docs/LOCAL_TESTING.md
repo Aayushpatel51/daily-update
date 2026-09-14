@@ -50,6 +50,8 @@ Use separate browser profiles for editor and subscriber: each profile has one se
 
 **Digest simulation writes real local preview records for the next day's cutoff.** It affects later local digest eligibility; use synthetic test subscriptions. It is disabled in sandbox mode. Empty digests are skipped. Cross-topic stories appear once, and previously captured editions are not replayed.
 
+If your email belongs to an earlier test subscription, add it from the current subscriber’s Preferences. The app queues an `email-link` confirmation under Editor → Deliveries. Copy that link into the same subscriber browser, then choose **Confirm and link my email**. This moves only the email channel, preserves the current topics/Telegram settings, and stops email on the earlier subscription. It does not delete either subscription. Links expire after 30 minutes and cannot be used by a different subscriber session.
+
 Try changing topics, major-only alerts, quiet hours, pause/resume, email unsubscribe and deletion. Quiet-hour briefs become a combined catch-up. Telegram-only readers can add verified email later. Readers without a browser session can request an email access link from Preferences; this does not reactivate an unsubscribed daily digest. In preview mode these links are also in Deliveries.
 
 ## Research and source monitoring

@@ -14,6 +14,7 @@ import {
 import {
   recoverEmail,
   addEmail,
+  confirmEmailLink,
   subscribe,
   preferences,
   verifyEmail,
@@ -98,6 +99,7 @@ export async function POST(req: NextRequest) {
         "preview-connect",
         "verify-again",
         "add-email",
+        "confirm-email-link",
       ].includes(action)
     ) {
       if (identity?.role !== "subscriber" || !identity.subscriber_id)
@@ -114,7 +116,14 @@ export async function POST(req: NextRequest) {
         } else result.redirect = "/preferences?saved=1";
       }
       if (action === "add-email") {
-        await addEmail(id, body.email);
+        const added = await addEmail(id, body.email);
+        if (added?.linking)
+          result.message =
+            "A confirmation link is ready in the editor's email delivery previews. Open it in this subscriber browser to link your existing email. No inbox email is sent in this local MVP.";
+        else result.redirect = "/preferences";
+      }
+      if (action === "confirm-email-link") {
+        await confirmEmailLink(id, z.string().parse(body.token));
         result.redirect = "/preferences";
       }
       if (action === "verify-again") await tx((db) => verification(db, id));

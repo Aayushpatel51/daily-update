@@ -3,7 +3,14 @@ import { Temporal } from "@js-temporal/polyfill";
 import { z } from "zod";
 import { tx, query, type DB } from "./db";
 import { topicSchema, type Subscriber } from "./models";
-import { newSession, newToken, takeToken, scopedToken, same } from "./security";
+import {
+  newSession,
+  newToken,
+  takeToken,
+  scopedToken,
+  same,
+  digest,
+} from "./security";
 import { enqueue } from "./editorial";
 import { config } from "./config";
 const time = z.string().regex(/^$|^(?:[01]\d|2[0-3]):[0-5]\d$/);
@@ -239,7 +246,7 @@ export async function recoverEmail(input: unknown) {
 
 export async function addEmail(id: string, input: unknown) {
   const email = z.email().max(254).parse(input).toLowerCase();
-  await tx(async (db) => {
+  return tx(async (db) => {
     const s = (
       await db.query<Subscriber>(
         "SELECT * FROM subscribers WHERE id=$1 FOR UPDATE",
@@ -250,18 +257,94 @@ export async function addEmail(id: string, input: unknown) {
     if (s.email && s.email !== email)
       throw new Error("Use your existing email address.");
     if (s.email_state === "active") return;
-    const other = await db.query(
-      "SELECT id FROM subscribers WHERE email=$1 AND id<>$2",
+    const other = await db.query<Subscriber>(
+      "SELECT * FROM subscribers WHERE email=$1 AND id<>$2",
       [email, id],
     );
-    if (other.rowCount)
-      throw new Error(
-        "This email cannot be linked here. Request its private preferences link instead.",
+    if (other.rows[0]) {
+      if (other.rows[0].email_state === "suppressed")
+        throw new Error(
+          "This email is suppressed. Contact the editor before linking it.",
+        );
+      const token = await newToken(
+        db,
+        other.rows[0].id,
+        `email-link:${id}:${digest(email)}`,
       );
+      await enqueue(
+        db,
+        `email-link:${id}:${randomUUID()}`,
+        "email",
+        "email-link",
+        {
+          text: "Confirm moving this email to the subscription where you requested it. Your current topics and Telegram connection will be kept; the earlier subscription will stop daily email. Open this link in the browser where you requested the change.",
+          url: `${config().APP_URL}/link-email?token=${token}`,
+        },
+        other.rows[0].id,
+      );
+      return { linking: true };
+    }
     await db.query(
       "UPDATE subscribers SET email=$2,email_state='unverified' WHERE id=$1",
       [id, email],
     );
     await verification(db, id);
+  });
+}
+
+export async function confirmEmailLink(id: string, token: string) {
+  await tx(async (db) => {
+    const pending = (
+      await db.query<{ subscriber_id: string; purpose: string }>(
+        "SELECT subscriber_id,purpose FROM tokens WHERE hash=$1 AND expires_at>now()",
+        [digest(token)],
+      )
+    ).rows[0];
+    if (!pending || !pending.purpose.startsWith(`email-link:${id}:`))
+      throw new Error(
+        "Open this link in the subscriber browser where you requested it, or request a new link.",
+      );
+    const rows = (
+      await db.query<Subscriber>(
+        "SELECT * FROM subscribers WHERE id=ANY($1::uuid[]) ORDER BY id FOR UPDATE",
+        [[id, pending.subscriber_id]],
+      )
+    ).rows;
+    const target = rows.find((s) => s.id === id),
+      source = rows.find((s) => s.id === pending.subscriber_id);
+    if (
+      !target ||
+      !source?.email ||
+      target.email ||
+      source.email_state === "suppressed" ||
+      pending.purpose !== `email-link:${id}:${digest(source.email)}`
+    )
+      throw new Error("The subscription changed. Request a new email link.");
+    const inFlight = await db.query(
+      "SELECT id FROM outbox WHERE subscriber_id=$1 AND channel='email' AND status IN ('processing','ambiguous') LIMIT 1",
+      [source.id],
+    );
+    if (inFlight.rowCount)
+      throw new Error(
+        "An earlier email delivery needs review. Ask the editor to resolve it before linking.",
+      );
+    await takeToken(db, token, pending.purpose);
+    const email = source.email;
+    await db.query(
+      "UPDATE subscribers SET email=NULL,email_state='off',email_since=NULL WHERE id=$1",
+      [source.id],
+    );
+    await db.query(
+      "UPDATE subscribers SET email=$2,email_state='active',email_since=now() WHERE id=$1",
+      [id, email],
+    );
+    await db.query(
+      "UPDATE outbox SET status='suppressed',error='email_moved' WHERE subscriber_id=$1 AND channel='email' AND status='queued'",
+      [source.id],
+    );
+    await db.query(
+      "DELETE FROM tokens WHERE subscriber_id=$1 AND (purpose IN ('verify','access') OR purpose LIKE 'email-link:%')",
+      [source.id],
+    );
   });
 }
