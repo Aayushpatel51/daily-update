@@ -21,7 +21,7 @@ npm run seed
 npm run dev
 ```
 
-Seeding is optional and idempotent. It adds five clearly labelled fictional articles, not real news. Open [the website](http://127.0.0.1:3000) and [the editorial desk](http://127.0.0.1:3000/admin). Use this exact hostname; authenticated actions check the configured origin.
+Seeding is optional and idempotent. It adds five clearly labelled fictional articles, not real news. Open [the website](http://127.0.0.1:3000) and [the editorial desk](http://127.0.0.1:3000/admin). Both `127.0.0.1` and `localhost` work on the configured local HTTP port. Use one consistently because each has separate browser cookies; generated links use `APP_URL`. Other origins are rejected.
 
 In a third terminal:
 

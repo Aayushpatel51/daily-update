@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { allowedOrigin } from "@/lib/origin";
 import { z } from "zod";
 import { config } from "@/lib/config";
 import { pool, query, tx } from "@/lib/db";
@@ -25,7 +26,7 @@ import { createStory, editStory } from "@/lib/editorial";
 import { tick } from "@/lib/worker";
 export async function POST(req: NextRequest) {
   try {
-    if (req.headers.get("origin") !== config().APP_URL)
+    if (!allowedOrigin(req.headers.get("origin"), config().APP_URL))
       return NextResponse.json(
         { error: "Request origin not allowed." },
         { status: 403 },

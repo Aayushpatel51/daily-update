@@ -60,3 +60,27 @@ test("HTML email treats all source content as text", () => {
     !emailDocument("title", "<script>alert(1)</script>").includes("<script>"),
   );
 });
+
+import { allowedOrigin } from "../src/lib/origin";
+test("local origins permit same-port loopback aliases but reject external and missing origins", () => {
+  const local = "http://127.0.0.1:3000";
+  for (const origin of [local, "http://localhost:3000"])
+    assert.equal(allowedOrigin(origin, local), true);
+  for (const origin of [
+    null,
+    "null",
+    "https://evil.invalid",
+    "http://localhost:3001",
+    "http://localhost.evil.invalid:3000",
+    "http://localhost:3000/path",
+  ])
+    assert.equal(allowedOrigin(origin, local), false);
+  assert.equal(
+    allowedOrigin("http://localhost:3000", "https://daily.example"),
+    false,
+  );
+  assert.equal(
+    allowedOrigin("https://daily.example", "https://daily.example"),
+    true,
+  );
+});
