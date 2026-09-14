@@ -1,5 +1,7 @@
 # Architecture
 
+Local implementation update, September 14, 2026: the owner requested the complete testable MVP in one PR. [MVP acceptance](MVP_ACCEPTANCE.md) records implemented behavior and remaining release gaps; [local testing](LOCAL_TESTING.md) gives verified setup steps. Broader requirements below remain release targets, not claims that every production gate has passed.
+
 Status: proposed implementation, September 11, 2026. No providers are integrated. Product behavior is defined in [REQUIREMENTS.md](REQUIREMENTS.md).
 
 See the [Task 1 source-monitoring plan](SOURCE_MONITORING_PLAN.md) for the initial registry and costed scheduling proposal. Its earlier hourly schedule is deferred under the free MVP decision; validate source batching and free quotas before selecting a schedule.

@@ -4,7 +4,17 @@ Working project name. Planning baseline: September 11, 2026.
 
 Daily Update will monitor the internet for relevant developments in five topics, send subscribers a verified Telegram brief, publish an explanatory article, and deliver an optional end-of-day email connecting the day's updates to those articles.
 
-**Status: planning plus a runnable source experiment. There is no web application or live delivery service yet. MVP/testing service budget: $0.**
+**Status: local MVP ready for review and testing. No public deployment or real email service. MVP/testing service budget: $0.**
+
+Start with [the local testing guide](docs/LOCAL_TESTING.md) for setup, editor sign-in and a complete story walkthrough. See [acceptance evidence and remaining launch gates](docs/MVP_ACCEPTANCE.md).
+
+```sh
+npm ci --ignore-scripts
+npm run setup
+npm run db
+```
+
+Leave the database running. In another terminal run `npm run seed` (optional synthetic examples) and `npm run dev`; in a third run `npm run worker`. Open http://127.0.0.1:3000. Editor access is at `/admin`; use `ADMIN_PASSWORD` from your private `.env`.
 
 Confirmed defaults and editor Telegram notifications are recorded in [MVP decisions](docs/MVP_DECISIONS.md). These override earlier provisional settings; the additional MVP/testing service budget is $0.
 
@@ -28,7 +38,13 @@ Daily Update/
 ├── .gitignore
 ├── experiments/
 │   └── source-monitor/  # isolated CLI, tests and synthetic fixtures
+├── src/                 # reader website, editor and domain modules
+├── scripts/             # setup, PostgreSQL, worker and backup tools
+├── tests/               # domain and database tests
+├── e2e/                 # browser acceptance tests
 └── docs/
+    ├── LOCAL_TESTING.md
+    ├── MVP_ACCEPTANCE.md
     ├── PRODUCT.md
     ├── REQUIREMENTS.md
     ├── ARCHITECTURE.md
@@ -65,7 +81,7 @@ The existing `.agents/` directory and `skills-lock.json` are local tooling confi
 | [Coding standards](docs/engineering/CODING_STANDARDS.md) | Implementation conventions, security boundaries, and meaningful testing |
 | [Agent instructions](AGENTS.md) | Repository-wide instructions for future coding work |
 
-## How implementation will start
+## Implementation roadmap
 
 ### Contribution workflow
 
@@ -95,8 +111,8 @@ npm --prefix experiments/source-monitor test
 npm --prefix experiments/source-monitor run demo
 ```
 
-## Proposed technical baseline
+## Technical baseline
 
 TypeScript, Next.js, local PostgreSQL and a local worker for testing, with the official Telegram Bot API and local email capture. Hosted services remain optional later candidates under the [free MVP plan](docs/FREE_MVP_PLAN.md). Search and LLM providers will be selected using a small evaluation; none is purchased or integrated. A separate crawling worker is conditional on source needs, not a day-one dependency.
 
-The commands above apply only to the source experiment. Web application development and migration commands will follow the application scaffold. Testing must remain within $0 incremental service spend. Local capture does not prove real email delivery; full live hosting and delivery require a later measured budget decision.
+The commands in the source-experiment section apply only to that isolated harness. The root application commands and schema setup are documented in the local testing guide. Testing must remain within $0 incremental service spend. Local capture does not prove real email delivery; full live hosting and delivery require a later measured budget decision.

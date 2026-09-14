@@ -1,6 +1,6 @@
 # Coding standards
 
-Status: intended conventions for future implementation, September 11, 2026. An isolated source experiment has its own verified commands; the application scaffold remains future work.
+Status: conventions for the local MVP and future release work. Root application commands and verification are in [LOCAL_TESTING.md](../LOCAL_TESTING.md); the isolated source experiment retains its own commands.
 
 ## 1. General approach
 

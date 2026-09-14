@@ -1,5 +1,7 @@
 # Requirements and acceptance criteria
 
+Local implementation update, September 14, 2026: the owner requested the complete testable MVP in one PR. [MVP acceptance](MVP_ACCEPTANCE.md) records implemented behavior and remaining release gaps; [local testing](LOCAL_TESTING.md) gives verified setup steps. Broader requirements below remain release targets, not claims that every production gate has passed.
+
 Baseline: September 11, 2026. P0 means required for the first public version. Numerical operating targets below are proposed pilot settings, not service guarantees.
 
 ## 1. Roles and access

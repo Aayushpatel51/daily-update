@@ -1,0 +1,46 @@
+{
+  "name": "daily-update",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.20.0 <25"
+  },
+  "scripts": {
+    "setup": "node --import tsx scripts/setup.ts",
+    "db": "node --import tsx scripts/database.ts",
+    "dev": "next dev --hostname 127.0.0.1",
+    "start": "next start --hostname 127.0.0.1",
+    "build": "next build",
+    "worker": "node --import tsx scripts/worker.ts",
+    "seed": "node --import tsx scripts/seed.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "test:e2e": "playwright test",
+    "format": "prettier --write src scripts tests e2e package.json package-lock.json tsconfig.json next.config.ts playwright.config.ts",
+    "format:check": "prettier --check src scripts tests e2e package.json package-lock.json tsconfig.json next.config.ts playwright.config.ts",
+    "backup": "node --import tsx scripts/backup.ts",
+    "restore:check": "node --import tsx scripts/restore-check.ts"
+  },
+  "dependencies": {
+    "@js-temporal/polyfill": "0.5.1",
+    "ipaddr.js": "2.5.0",
+    "next": "16.3.5",
+    "pg": "8.23.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "saxes": "6.0.0",
+    "zod": "4.6.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/node": "24.13.4",
+    "@types/pg": "8.23.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "embedded-postgres": "18.4.0-beta.17",
+    "prettier": "3.9.6",
+    "tsx": "4.23.13",
+    "typescript": "7.0.2"
+  }
+}
