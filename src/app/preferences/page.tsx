@@ -67,7 +67,8 @@ export default async function Preferences() {
           <div className="notice">
             <p>
               Confirm your email using its verification link. In local testing,
-              it appears in the editor’s delivery previews.
+              it appears in the editor’s delivery previews. In the live pilot,
+              check your configured test inbox.
             </p>
             <ActionForm
               action="verify-again"

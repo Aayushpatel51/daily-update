@@ -16,6 +16,15 @@ export function config() {
       TELEGRAM_BOT_TOKEN: z.string().default(""),
       TELEGRAM_BOT_NAME: z.string().default(""),
       TELEGRAM_ALLOWLIST: z.string().default(""),
+      EMAIL_MODE: z.enum(["capture", "resend"]).default("capture"),
+      RESEND_API_KEY: z.string().default(""),
+      RESEND_WEBHOOK_SECRET: z.string().default(""),
+      PILOT_EMAIL: z.string().default(""),
+      EMAIL_FROM: z.string().default("Daily Update <onboarding@resend.dev>"),
+      TELEGRAM_TRANSPORT: z.enum(["polling", "webhook"]).default("polling"),
+      TELEGRAM_WEBHOOK_SECRET: z.string().default(""),
+      CRON_SECRET: z.string().default(""),
+      PILOT_MODE: z.enum(["true", "false"]).default("false"),
       EDITOR_CHAT_ID: z.string().default(""),
     })
     .parse(process.env);
@@ -39,6 +48,21 @@ export function config() {
     (!env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_ALLOWLIST)
   )
     throw new Error("Sandbox Telegram needs credentials and an allowlist");
+  if (
+    env.EMAIL_MODE === "resend" &&
+    (!env.RESEND_API_KEY || !z.email().safeParse(env.PILOT_EMAIL).success)
+  )
+    throw new Error("Resend requires a key and pilot recipient");
+  if (
+    env.TELEGRAM_TRANSPORT === "webhook" &&
+    env.TELEGRAM_WEBHOOK_SECRET.length < 32
+  )
+    throw new Error("Webhook secret missing");
+  if (
+    env.PILOT_MODE === "true" &&
+    (url.protocol !== "https:" || env.CRON_SECRET.length < 32)
+  )
+    throw new Error("Pilot requires HTTPS and a scheduler secret");
   return {
     ...env,
     APP_URL: url.origin,

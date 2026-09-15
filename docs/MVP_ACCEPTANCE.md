@@ -1,5 +1,7 @@
 # Local MVP acceptance
 
+Live pilot update: the owner authorized a Vercel/Supabase/Resend deployment for allowlisted tests. [Live pilot setup and limits](LIVE_PILOT.md) describes the new adapters; older local-only notes below describe the previous version.
+
 September 14, 2026. The owner requested one complete local MVP pull request after merging the earlier planning and source-experiment PRs. This authorizes application implementation and consolidates the local implementation work from the backlog; it does not authorize public launch or mark all production requirements complete.
 
 | Area | Implemented for local testing | Remaining release work |

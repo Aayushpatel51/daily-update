@@ -1,0 +1,8 @@
+.env*
+.agents
+skills-lock.json
+storage
+test-results
+playwright-report
+.git
+node_modules

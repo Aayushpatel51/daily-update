@@ -3,13 +3,13 @@ export default function Privacy() {
     <article className="article-page">
       <h1>Your preferences are yours.</h1>
       <p className="standfirst">
-        This is a local test installation, not a public subscription service.
+        This is an owner-only pilot for testing subscriptions and delivery.
       </p>
       <section>
         <h2>What is stored</h2>
         <p>
           Your chosen topics, timezone, channel status and any email address or
-          Telegram chat identifier you provide are stored in the local
+          Telegram chat identifier you provide are stored in the configured
           PostgreSQL database. Private session and connection tokens are hashed.
           Verification links and delivery previews are available only to the
           editor.
@@ -25,7 +25,7 @@ export default function Privacy() {
         </p>
       </section>
       <section>
-        <h2>Local retention</h2>
+        <h2>Test data and providers</h2>
         <p>
           Expired sessions and connection tokens are removed by the worker.
           Review history and local delivery previews remain until the operator
@@ -33,8 +33,11 @@ export default function Privacy() {
           deleted records and must be handled privately.
         </p>
         <p>
-          Public-launch retention, support contact and provider data policies
-          still require an owner decision before real distribution.
+          The hosted pilot uses Vercel for the website, Supabase for data,
+          Telegram for messages, and Resend for email. Each provider processes
+          the data needed to deliver its service. Access is restricted to the
+          owner’s test destinations. Wider distribution requires a separate
+          privacy and retention review.
         </p>
       </section>
     </article>

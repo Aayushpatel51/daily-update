@@ -1,5 +1,7 @@
 # Daily Update
 
+Live pilot update: the owner authorized a Vercel/Supabase/Resend deployment for allowlisted tests. [Live pilot setup and limits](docs/LIVE_PILOT.md) describes the new adapters; older local-only notes below describe the previous version.
+
 Working project name. Planning baseline: September 11, 2026.
 
 Daily Update will monitor the internet for relevant developments in five topics, send subscribers a verified Telegram brief, publish an explanatory article, and deliver an optional end-of-day email connecting the day's updates to those articles.

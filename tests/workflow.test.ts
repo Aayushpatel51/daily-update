@@ -4,6 +4,8 @@ import { readFile } from "node:fs/promises";
 import pg from "pg";
 import { config } from "../src/lib/config";
 process.env.DELIVERY_MODE = "preview";
+process.env.EMAIL_MODE = "capture";
+process.env.PILOT_MODE = "false";
 const original = config().DATABASE_URL;
 const testUrl = new URL(original);
 testUrl.pathname = "/daily_update_test";
@@ -57,7 +59,7 @@ before(async () => {
   await root.end();
   await pool().query(await readFile("src/lib/schema.sql", "utf8"));
   await pool().query(
-    "TRUNCATE outbox,digests,tokens,sessions,subscribers,revisions,stories,telegram_updates,rate_limits CASCADE",
+    "TRUNCATE outbox,digests,tokens,sessions,subscribers,revisions,stories,telegram_updates,rate_limits,email_events,email_budget,job_leases CASCADE",
   );
 });
 after(async () => {
@@ -384,4 +386,74 @@ test("existing email links only after proof in the requesting subscriber session
   );
   for (const id of [old.id, current.id, outsider.id])
     await preferences(id!, {}, "delete");
+});
+
+test("Resend restricts recipient, uses idempotency, and records bounce suppression", async () => {
+  const { sendEmail, recordEmailEvent } = await import("../src/lib/email");
+  const { enqueue } = await import("../src/lib/editorial");
+  const oldFetch = globalThis.fetch;
+  const oldKey = process.env.RESEND_API_KEY,
+    oldEmail = process.env.PILOT_EMAIL;
+  process.env.RESEND_API_KEY = "test-key";
+  process.env.PILOT_EMAIL = "allowed@example.invalid";
+  const a = await subscribe({
+    topics: ["ai"],
+    timezone: "UTC",
+    telegram: true,
+    email: "allowed@example.invalid",
+  });
+  try {
+    const s = await subscriber(a.id!);
+    await tx((db) =>
+      enqueue(
+        db,
+        "resend-contract",
+        "email",
+        "verify",
+        { title: "Fixture", text: "Fixture", html: "<p>Fixture</p>" },
+        a.id,
+      ),
+    );
+    const d = (
+      await query<import("../src/lib/models").Delivery>(
+        "SELECT * FROM outbox WHERE key='resend-contract'",
+      )
+    )[0];
+    let calls = 0;
+    globalThis.fetch = async (_url, options) => {
+      calls++;
+      assert.equal(new Headers(options?.headers).get("Idempotency-Key"), d.id);
+      return new Response(JSON.stringify({ id: "provider-fixture" }));
+    };
+    assert.equal(
+      (await sendEmail(d, { ...s, email: "not-allowed@example.invalid" }))
+        .status,
+      "failed",
+    );
+    assert.equal(calls, 0);
+    assert.equal((await sendEmail(d, s)).status, "accepted");
+    assert.equal(calls, 1);
+    await query(
+      "UPDATE outbox SET provider_id='provider-fixture',status='accepted' WHERE id=$1",
+      [d.id],
+    );
+    await recordEmailEvent("evt-fixture", {
+      type: "email.bounced",
+      data: { email_id: "provider-fixture" },
+    });
+    await recordEmailEvent("evt-fixture", {
+      type: "email.bounced",
+      data: { email_id: "provider-fixture" },
+    });
+    assert.equal((await subscriber(a.id!)).email_state, "suppressed");
+    assert.equal((await sendEmail(d, s)).status, "failed");
+    assert.equal(calls, 1);
+  } finally {
+    globalThis.fetch = oldFetch;
+    if (oldKey === undefined) delete process.env.RESEND_API_KEY;
+    else process.env.RESEND_API_KEY = oldKey;
+    if (oldEmail === undefined) delete process.env.PILOT_EMAIL;
+    else process.env.PILOT_EMAIL = oldEmail;
+    await preferences(a.id!, {}, "delete");
+  }
 });

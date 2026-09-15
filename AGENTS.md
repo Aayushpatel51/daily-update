@@ -2,7 +2,7 @@
 
 ## Purpose and current stage
 
-Daily Update now includes a local-testable web application, PostgreSQL worker, preview delivery adapters and the source-monitor experiment. The owner requested a complete local MVP pull request. Follow docs/LOCAL_TESTING.md and docs/MVP_ACCEPTANCE.md; public deployment and real email delivery are not implemented or authorized.
+Daily Update now includes a local-testable web application, PostgreSQL worker, preview delivery adapters and the source-monitor experiment. The owner requested a complete local MVP pull request. Follow docs/LOCAL_TESTING.md and docs/MVP_ACCEPTANCE.md; the owner has now authorized deployment and real delivery to allowlisted pilot recipients. Follow docs/LIVE_PILOT.md. Public commercial launch and wider distribution remain out of scope.
 
 Read [README.md](README.md), [PRODUCT.md](docs/PRODUCT.md), [REQUIREMENTS.md](docs/REQUIREMENTS.md), and [ARCHITECTURE.md](docs/ARCHITECTURE.md) before implementation. For interface work also read [BRAND.md](docs/design/BRAND.md) and [DESIGN_SYSTEM.md](docs/design/DESIGN_SYSTEM.md). Follow [CODING_STANDARDS.md](docs/engineering/CODING_STANDARDS.md) for code changes.
 

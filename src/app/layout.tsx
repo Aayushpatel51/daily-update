@@ -48,7 +48,7 @@ export default function RootLayout({
             <Link href="/admin">Editorial desk</Link>
           </nav>
           <p className="caption">
-            Local testing edition. Demonstration stories are labelled.
+            Pilot testing edition. Demonstration stories are labelled.
           </p>
         </footer>
       </body>

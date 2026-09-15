@@ -1,5 +1,7 @@
 # Architecture
 
+Live pilot update: the owner authorized a Vercel/Supabase/Resend deployment for allowlisted tests. [Live pilot setup and limits](LIVE_PILOT.md) describes the new adapters; older local-only notes below describe the previous version.
+
 Local implementation update, September 14, 2026: the owner requested the complete testable MVP in one PR. [MVP acceptance](MVP_ACCEPTANCE.md) records implemented behavior and remaining release gaps; [local testing](LOCAL_TESTING.md) gives verified setup steps. Broader requirements below remain release targets, not claims that every production gate has passed.
 
 Status: proposed implementation, September 11, 2026. No providers are integrated. Product behavior is defined in [REQUIREMENTS.md](REQUIREMENTS.md).

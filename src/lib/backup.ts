@@ -8,4 +8,6 @@ export const backupTables = [
   "settings",
   "telegram_updates",
   "rate_limits",
+  "email_budget",
+  "email_events",
 ] as const;

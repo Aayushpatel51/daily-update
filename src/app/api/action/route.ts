@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { after, NextRequest, NextResponse } from "next/server";
 import { allowedOrigin } from "@/lib/origin";
 import { z } from "zod";
 import { config } from "@/lib/config";
@@ -24,7 +24,9 @@ import {
   verification,
 } from "@/lib/subscriptions";
 import { createStory, editStory } from "@/lib/editorial";
+import { boundedBody } from "@/lib/http";
 import { tick } from "@/lib/worker";
+export const maxDuration = 180;
 export async function POST(req: NextRequest) {
   try {
     if (!allowedOrigin(req.headers.get("origin"), config().APP_URL))
@@ -37,7 +39,7 @@ export async function POST(req: NextRequest) {
         { error: "Request too large." },
         { status: 413 },
       );
-    const text = await req.text();
+    const text = await boundedBody(req);
     if (Buffer.byteLength(text) > 80_000)
       return NextResponse.json(
         { error: "Request too large." },
@@ -206,6 +208,17 @@ export async function POST(req: NextRequest) {
         result.redirect = "/admin/deliveries";
       } else throw new Error("Unknown action.");
     }
+    if (
+      config().PILOT_MODE === "true" &&
+      !["tick", "digest-test", "login", "logout"].includes(action)
+    )
+      after(async () => {
+        try {
+          await tick("delivery");
+        } catch {
+          console.error("Delivery remains queued for scheduler");
+        }
+      });
     const response = NextResponse.json(result, {
       headers: { "Cache-Control": "no-store" },
     });
