@@ -22,6 +22,10 @@ export async function POST(req: Request) {
       { status: 400 },
     );
   }
-  await recordEmailEvent(req.headers.get("svix-id")!, event);
+  if (!event.data.email_id) return Response.json({ ok: true, ignored: true });
+  await recordEmailEvent(req.headers.get("svix-id")!, {
+    type: event.type,
+    data: { email_id: event.data.email_id },
+  });
   return Response.json({ ok: true });
 }

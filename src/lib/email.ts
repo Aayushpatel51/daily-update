@@ -92,7 +92,10 @@ export function verifyEmailEvent(
 ) {
   new Webhook(secret).verify(body, headers);
   return z
-    .object({ type: z.string(), data: z.object({ email_id: z.string() }) })
+    .object({
+      type: z.string(),
+      data: z.object({ email_id: z.string().optional() }),
+    })
     .parse(JSON.parse(body));
 }
 export async function recordEmailEvent(
