@@ -36,3 +36,7 @@ CREATE TABLE IF NOT EXISTS telegram_updates(id bigint PRIMARY KEY, processed_at 
 CREATE TABLE IF NOT EXISTS rate_limits(key text PRIMARY KEY, hits integer NOT NULL, resets_at timestamptz NOT NULL);
 INSERT INTO settings VALUES ('switches','{"monitoring":true,"telegram":true,"email":true,"publishing":true,"editor":true}') ON CONFLICT DO NOTHING;
 INSERT INTO migrations(version) VALUES(1) ON CONFLICT DO NOTHING;
+CREATE TABLE IF NOT EXISTS job_leases(name text PRIMARY KEY, owner uuid NOT NULL, expires_at timestamptz NOT NULL);
+CREATE TABLE IF NOT EXISTS email_budget(delivery_id uuid PRIMARY KEY, reserved_at timestamptz NOT NULL DEFAULT now());
+CREATE TABLE IF NOT EXISTS email_events(event_id text PRIMARY KEY, provider_id text NOT NULL, type text NOT NULL, created_at timestamptz NOT NULL DEFAULT now());
+INSERT INTO migrations(version) VALUES(2) ON CONFLICT DO NOTHING;

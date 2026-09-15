@@ -5,6 +5,7 @@ import { type Delivery, type Subscriber, type Story } from "./models";
 import { scopedToken } from "./security";
 import { quiet } from "./time";
 import { z } from "zod";
+import { sendEmail } from "./email";
 export const escapeHtml = (s: string) =>
   s.replace(
     /[&<>"']/g,
@@ -223,7 +224,10 @@ export async function dispatchOne(now = new Date(), send = telegramCall) {
             ? s.email_state === "unverified"
             : s.email_state === "active");
     if (d.channel === "telegram")
-      eligible = !!s && s.telegram_state === "active";
+      eligible =
+        d.purpose === "onboarding"
+          ? config().allowlist.includes(String(d.payload.chat))
+          : !!s && s.telegram_state === "active";
     if (d.purpose === "brief" && eligible) {
       const e = (
         await db.query<Story>("SELECT * FROM stories WHERE id=$1", [d.story_id])
@@ -288,10 +292,17 @@ export async function dispatchOne(now = new Date(), send = telegramCall) {
     const { d, s } = claimed,
       c = config();
     let result: ProviderResult | { status: "captured"; id?: string };
-    if (c.DELIVERY_MODE === "preview" || d.channel === "email") {
+    if (d.channel === "email" && c.EMAIL_MODE === "resend") {
+      result = await sendEmail(d, s);
+    } else if (c.DELIVERY_MODE === "preview" || d.channel === "email") {
       result = { status: "captured", id: "preview-" + d.id };
     } else {
-      const chat = d.channel === "editor" ? c.EDITOR_CHAT_ID : s?.chat_id;
+      const chat =
+        d.purpose === "onboarding"
+          ? String(d.payload.chat)
+          : d.channel === "editor"
+            ? c.EDITOR_CHAT_ID
+            : s?.chat_id;
       if (!chat || !c.allowlist.includes(chat))
         result = { status: "failed", error: "sandbox_recipient_not_allowed" };
       else {

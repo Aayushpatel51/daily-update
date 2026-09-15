@@ -43,6 +43,14 @@ export async function subscribe(input: unknown) {
     })
     .and(preferenceSchema)
     .parse(input);
+  if (
+    config().PILOT_MODE === "true" &&
+    data.email &&
+    data.email.toLowerCase() !== config().PILOT_EMAIL.toLowerCase()
+  )
+    throw new Error(
+      "This pilot currently accepts only the owner’s test email.",
+    );
   if (!data.email && !data.telegram)
     throw new Error("Choose Telegram or the daily email.");
   return tx(async (db) => {
@@ -217,6 +225,13 @@ export async function connectTelegram(db: DB, token: string, chat: string) {
 
 export async function recoverEmail(input: unknown) {
   const email = z.email().max(254).parse(input).toLowerCase();
+  if (
+    config().PILOT_MODE === "true" &&
+    email !== config().PILOT_EMAIL.toLowerCase()
+  )
+    throw new Error(
+      "This pilot currently accepts only the owner’s test email.",
+    );
   await tx(async (db) => {
     const s = (
       await db.query<Subscriber>(
@@ -246,6 +261,13 @@ export async function recoverEmail(input: unknown) {
 
 export async function addEmail(id: string, input: unknown) {
   const email = z.email().max(254).parse(input).toLowerCase();
+  if (
+    config().PILOT_MODE === "true" &&
+    email !== config().PILOT_EMAIL.toLowerCase()
+  )
+    throw new Error(
+      "This pilot currently accepts only the owner’s test email.",
+    );
   return tx(async (db) => {
     const s = (
       await db.query<Subscriber>(

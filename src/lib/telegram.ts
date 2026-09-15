@@ -41,7 +41,22 @@ export async function handleUpdate(value: unknown) {
         ])
       ).rows[0];
     }
-    if (!s) return;
+    if (!s) {
+      if (text === "/start" || text === "/help")
+        await enqueue(
+          db,
+          `onboarding:${u.update_id}`,
+          "telegram",
+          "onboarding",
+          {
+            text: "Welcome to Daily Update. Choose your topics on the website, then use its Telegram connection link to connect this chat.",
+            url: config().APP_URL + "/subscribe",
+            chat,
+          },
+          null,
+        );
+      return;
+    }
     const cmd = text.split(" ")[0].split("@")[0];
     if (cmd === "/stop" || cmd === "/pause") {
       await db.query("UPDATE subscribers SET telegram_state=$2 WHERE id=$1", [
@@ -77,7 +92,8 @@ export async function handleUpdate(value: unknown) {
 }
 export async function pollTelegram() {
   const c = config();
-  if (c.DELIVERY_MODE !== "sandbox") return;
+  if (c.DELIVERY_MODE !== "sandbox" || c.TELEGRAM_TRANSPORT === "webhook")
+    return;
   const last =
     (
       await query<{ value: { offset: number } }>(

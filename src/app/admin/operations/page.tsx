@@ -37,8 +37,8 @@ export default async function Operations() {
           <span>Telegram mode</span>
         </div>
         <div>
-          <strong>Local</strong>
-          <span>Email capture</span>
+          <strong>{config().EMAIL_MODE}</strong>
+          <span>Email delivery</span>
         </div>
       </div>
       <p>Last worker cycle: {worker?.value.lastRun ?? "Not run yet"}</p>
@@ -59,10 +59,9 @@ export default async function Operations() {
       <section className="notice">
         <h2>Testing boundaries</h2>
         <p>
-          No hosted search, model, email or paid broadcast API is enabled.
-          Research is imported by the editor. Telegram sandbox sends require a
-          bot token and an explicit recipient allowlist in .env. Email stays
-          captured locally.
+          No hosted search, model or paid broadcast API is enabled. Research is
+          imported by the editor. Telegram sandbox sends require a bot token and
+          an explicit recipient allowlist in .env. Email stays captured locally.
         </p>
         <p>
           For backups and recovery, follow docs/LOCAL_TESTING.md. This

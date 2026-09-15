@@ -4,7 +4,9 @@ const shared = globalThis as typeof globalThis & { dailyPool?: Pool };
 export function pool() {
   return (shared.dailyPool ??= new Pool({
     connectionString: config().DATABASE_URL,
-    max: 8,
+    max: 4,
+    idleTimeoutMillis: 10000,
+    allowExitOnIdle: true,
     connectionTimeoutMillis: 5000,
     statement_timeout: 10000,
   }));
